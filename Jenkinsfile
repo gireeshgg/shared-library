@@ -1,24 +1,23 @@
 @Library('shared-library') _
 node(label: 'master'){
     //Variables
-    def gitURL = "https://github.com/anoop600/MVC.git"
-    //def gitURL = "https://github.com/anoop600/Angular-SpringBoot.git"
+    def gitURL = "https://github.com/srinivasbv22/sl.git"
     def repoBranch = "master"
-    def applicationName = "mvc"
-    def sonarqubeServer = "sonar"
+    def applicationName = "guns"
+    def sonarqubeServer = "sonarqube"
     def sonarqubeGoal = "clean verify sonar:sonar"
-    def mvnHome = "MAVEN_HOME"
+    def mvnHome = "mvnHome"
     def pom = "pom.xml"
     def goal = "clean install"
-    def artifactoryServer = "Artifactory"
-    def releaseRepo = "generic-local"
-    def snapshotRepo = "generic-snapshot"
+    def artifactoryServer = "artifactory"
+    def releaseRepo = "guns"
+    def snapshotRepo = "guns"
     def dockerRegistry = "https://registry.hub.docker.com"
     def dockerImageRemove = "registry.hub.docker.com"
-    def dockerRegistryUserName = "anoop600"
+    def dockerRegistryUserName = "srinivasv22"
     def dockerCredentialID = "dockerID" 
     def dockerImageName = "${dockerRegistryUserName}/${applicationName}"
-    def vmPort = 9999
+    def vmPort = 8089
     def containerPort = 8080
     def lastSuccessfulBuildID = 0
     
@@ -78,4 +77,9 @@ node(label: 'master'){
         runDockerImage "${vmPort}","${containerPort}", "${applicationName}","${dockerImageName}", "${BUILD_NUMBER}", "${lastSuccessfulBuildID}"
     }
     
+	stage('Run Docker Database Image'){
+	    sh "cd /home/devopsinfra/docker201"
+        sh "docker-compose up -d"
+    }
+	
 }
