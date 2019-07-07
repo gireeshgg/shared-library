@@ -6,7 +6,7 @@ node(label: 'master'){
     def applicationName = "guns"
     def sonarqubeServer = "sonarqube"
     def sonarqubeGoal = "clean verify sonar:sonar"
-    def mvnHome = "mvnHome"
+    def mvnHome = "Maven"
     def pom = "pom.xml"
     def goal = "clean install"
     def artifactoryServer = "artifactory"
