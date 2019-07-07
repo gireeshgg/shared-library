@@ -78,8 +78,9 @@ node(label: 'master'){
     }
     
 	stage('Run Docker Database Image'){
+	    sh "export INM=${dockerImageName}:${BUILD_NUMBER} "
 	    sh "cd /home/devopsinfra/docker201"
-        sh "docker-compose run -e imagename=${dockerImageName}:${BUILD_NUMBER} -f /home/devopsinfra/docker201/docker-compose.yml up -d"
+        sh "docker-compose -f /home/devopsinfra/docker201/docker-compose.yml up -d"
     }
 	
 }
