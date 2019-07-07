@@ -14,7 +14,7 @@ node(label: 'master'){
     def snapshotRepo = "guns"
     def dockerRegistry = "https://registry.hub.docker.com"
     def dockerImageRemove = "registry.hub.docker.com"
-    def dockerRegistryUserName = "srinivasv22"
+    def dockerRegistryUserName = "srinivasbv22"
     def dockerCredentialID = "dockerID" 
     def dockerImageName = "${dockerRegistryUserName}/${applicationName}"
     def vmPort = 8089
