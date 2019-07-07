@@ -79,7 +79,7 @@ node(label: 'master'){
     
 	stage('Run Docker Database Image'){
 	    sh "cd /home/devopsinfra/docker201"
-        sh "docker-compose up -d"
+        sh "docker-compose -f /home/devopsinfra/docker201/docker-compose.yml up -d"
     }
 	
 }
