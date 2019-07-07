@@ -72,15 +72,14 @@ node(label: 'master'){
   
     
     //Delete Old running Container and run new built
-    stage('Run Docker Image'){
-        echo "Last Successful Build = ${lastSuccessfulBuildID}"
-        runDockerImage "${vmPort}","${containerPort}", "${applicationName}","${dockerImageName}", "${BUILD_NUMBER}", "${lastSuccessfulBuildID}"
-    }
+    //stage('Run Docker Image'){
+    //    echo "Last Successful Build = ${lastSuccessfulBuildID}"
+    //    runDockerImage "${vmPort}","${containerPort}", "${applicationName}","${dockerImageName}", "${BUILD_NUMBER}", "${lastSuccessfulBuildID}"
+    //}
     
 	stage('Run Docker Database Image'){
-	    sh "export INM=${dockerImageName}:${BUILD_NUMBER} "
 	    sh "cd /home/devopsinfra/docker201"
-        sh "docker-compose -f /home/devopsinfra/docker201/docker-compose.yml up -d"
+            sh "docker-compose -f /home/devopsinfra/docker201/docker-compose.yml up -d"
     }
 	
 }
