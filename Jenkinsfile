@@ -23,7 +23,7 @@ node(label: 'master'){
     try
     {
     //Check for Previous-Successful-Build
-	    hello
+	    
     stage('Get Last Successful Build Number'){
         def build = currentBuild.previousBuild
         while (build != null) {
