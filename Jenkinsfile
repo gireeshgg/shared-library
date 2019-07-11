@@ -79,8 +79,8 @@ node(label: 'master'){
     
 	stage('Run Docker Database Image'){
 	    //sh "cd /home/devopsinfra/docker201"
-            //sh "docker-compose -f /home/devopsinfra/docker201/docker-compose.yml up -d"
-		sh "kubectl apply -f /home/devopsinfra/k81/guns-ui-deployment.yml"
+            sh "docker-compose -f /home/devopsinfra/docker201/docker-compose.yml up -d"
+		//sh "kubectl apply -f /home/devopsinfra/k81/guns-ui-deployment.yml"
     }
 	
 }
