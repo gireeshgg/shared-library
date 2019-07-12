@@ -27,6 +27,7 @@ node(label: 'master'){
     stage('Get Last Successful Build Number'){
         def build = currentBuild.previousBuild
         while (build != null) {
+	    sh 'rm -rf  * '	
             if (build.result == "SUCCESS")
             {
                 lastSuccessfulBuildID = build.id as Integer
