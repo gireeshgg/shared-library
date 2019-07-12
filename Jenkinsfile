@@ -3,7 +3,7 @@ node(label: 'master'){
     //Variables
     def gitURL = "https://github.com/gireeshgg/guns.git"
     def repoBranch = "master"
-    def applicationName = "guns"
+    def applicationName = "Tomguns"
     def sonarqubeServer = "Sonar"
     def sonarqubeGoal = "clean verify sonar:sonar"
     def mvnHome = "Maven"
@@ -52,13 +52,19 @@ node(label: 'master'){
     }
     
     //MVN Build
-    stage('Maven Build and Push to Artifactory'){
-        mavenBuild "${artifactoryServer}","${mvnHome}","${pom}", "${goal}", "${releaseRepo}", "${snapshotRepo}"
+    stage('Maven Build){
+        mavenBuild "${artifactoryServer}","${mvnHome}","${pom}", "${goal}"
     }
     
     //docker-image-build and Push
-    stage('Build Docker image and Push'){
-        dockerBuildAndPush "${dockerRegistry}","${dockerCredentialID}","${dockerImageName}"
+    stage('Build Docker image and Push to Artifactory'){
+        dockerBuildAndPush "${dockerRegistry}","${dockerCredentialID}","${dockerImageName},"${releaseRepo}", "${snapshotRepo}"
+    }
+    
+    stage('push docker images to artifactory'){
+     def uploadSpec = """
+        { "files": [ { "pattern": "/var/lib/jenkins/workspace/scriptypipe/target/gspring.war", "target": "girish" } ] }"""
+    
     }
     
     //Remove extra image
