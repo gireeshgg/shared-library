@@ -1,4 +1,4 @@
-def call(def registry, def dockerCredential ,def imageName){
+def call(def registry, def dockerCredential ,def imageName,def releaseRepo, def snapshotRepo){
     docker.withRegistry('https://registry.hub.docker.com', "${dockerCredential}") {
     
     echo "${dockerCredential}"
