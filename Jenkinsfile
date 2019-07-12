@@ -89,6 +89,6 @@ node(label: 'master'){
 	{
 		currentBuild.result = 'FAILURE'
 		//Mail on failure
-		mail bcc: '', body:"${err}", cc: '', from: '', replyTo: '', subject: 'Job failed', to: 'srinivasbv22@gmail.com'
+		mail bcc: '', body:"${err}", cc: '', from: '', replyTo: '', subject: 'Job failed', to: 'gireeshgg48@yahoo.com'
 	}
 }
