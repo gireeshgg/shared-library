@@ -1,21 +1,21 @@
 @Library('shared-library') _
 node(label: 'master'){
     //Variables
-    def gitURL = "https://github.com/srinivasbv22/sl.git"
+    def gitURL = "https://github.com/gireeshgg/guns.git"
     def repoBranch = "master"
     def applicationName = "guns"
-    def sonarqubeServer = "sonarqube"
+    def sonarqubeServer = "Sonar"
     def sonarqubeGoal = "clean verify sonar:sonar"
     def mvnHome = "Maven"
     def pom = "pom.xml"
     def goal = "clean install"
-    def artifactoryServer = "artifactory"
+    def artifactoryServer = "giri_art"
     def releaseRepo = "guns"
     def snapshotRepo = "guns"
     def dockerRegistry = "https://registry.hub.docker.com"
     def dockerImageRemove = "registry.hub.docker.com"
-    def dockerRegistryUserName = "srinivasbv22"
-    def dockerCredentialID = "dockerID" 
+    def dockerRegistryUserName = "gireeshgg"
+	def dockerCredentialID = "${docker_password}" 
     def dockerImageName = "${dockerRegistryUserName}/${applicationName}"
     def vmPort = 8089
     def containerPort = 8080
