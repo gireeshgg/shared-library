@@ -79,7 +79,7 @@ node(label: 'master'){
     //    runDockerImage "${vmPort}","${containerPort}", "${applicationName}","${dockerImageName}", "${BUILD_NUMBER}", "${lastSuccessfulBuildID}"
     //}
 	  try{
-		  stage('Remove previous image){
+		  stage('Remove previous image'){
 		  sh "docker-compose down"
 		}
 			}catch(err){
