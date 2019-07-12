@@ -58,7 +58,7 @@ node(label: 'master'){
     
     //docker-image-build and Push
     stage('Build Docker image and Push to Artifactory'){
-        dockerBuild "${dockerRegistry}","${dockerCredentialID}","${dockerImageName},"${releaseRepo}", "${snapshotRepo}"
+        dockerBuild "${dockerRegistry}","${dockerCredentialID}","${dockerImageName}","${releaseRepo}", "${snapshotRepo}"
     }
     
     //Remove extra image
