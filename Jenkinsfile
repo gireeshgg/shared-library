@@ -58,13 +58,7 @@ node(label: 'master'){
     
     //docker-image-build and Push
     stage('Build Docker image and Push to Artifactory'){
-        dockerBuildAndPush "${dockerRegistry}","${dockerCredentialID}","${dockerImageName},"${releaseRepo}", "${snapshotRepo}"
-    }
-    
-    stage('push docker images to artifactory'){
-     def uploadSpec = """
-        { "files": [ { "pattern": "/var/lib/jenkins/workspace/scriptypipe/target/gspring.war", "target": "girish" } ] }"""
-    
+        dockerBuild "${dockerRegistry}","${dockerCredentialID}","${dockerImageName},"${releaseRepo}", "${snapshotRepo}"
     }
     
     //Remove extra image
@@ -84,11 +78,17 @@ node(label: 'master'){
     //    echo "Last Successful Build = ${lastSuccessfulBuildID}"
     //    runDockerImage "${vmPort}","${containerPort}", "${applicationName}","${dockerImageName}", "${BUILD_NUMBER}", "${lastSuccessfulBuildID}"
     //}
+	  try{
+		  stage('Remove previous image){
+		  sh "docker-compose down"
+		}
+			}catch(err){
+				sh "echo $err"
+			}
     
-	stage('Run Docker Database Image'){
-	    //sh "cd /home/devopsinfra/docker201"
-            sh "docker-compose -f /home/devopsinfra/docker201/docker-compose.yml up -d"
-		//sh "kubectl apply -f /home/devopsinfra/k81/guns-ui-deployment.yml"
+    stage('Run Docker Database Image'){
+            sh "docker-compose -f docker-compose.yml up -d"
+		//sh "kubectl apply -f /home/dvopsinfra/k81/guns-ui-deployment.yml"
     }
     }
     catch(err)
