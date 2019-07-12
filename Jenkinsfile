@@ -52,7 +52,7 @@ node(label: 'master'){
     }
     
     //MVN Build
-    stage('Maven Build){
+    stage('Maven Build'){
         mavenBuild "${artifactoryServer}","${mvnHome}","${pom}", "${goal}"
     }
     
