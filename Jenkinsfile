@@ -20,6 +20,7 @@ node(label: 'master'){
     def vmPort = 8089
     def containerPort = 8080
     def lastSuccessfulBuildID = 0
+    def deployTo = 'wpznv87178dns1.eastus2.cloudapp.azure.com'
  //   try
  //   {
     //Check for Previous-Successful-Build
@@ -57,19 +58,19 @@ node(label: 'master'){
     }
     
     //docker-image-build and Push
-    stage('Build Docker image and Push to Artifactory'){
-        dockerBuildAndPush "${dockerRegistry}","${dockerCredentialID}","${dockerImageName}","${releaseRepo}", "${snapshotRepo}"
+    stage('Build Docker image and Push to DockerHub'){
+        dockerBuildAndPush "${dockerRegistry}","${dockerCredentialID}","${dockerImageName}","${lastSuccessfulBuildID}"
     }
     
     //Remove extra image
-    stage('Remove image'){
-        removeDockerImage "${dockerImageRemove}","${dockerImageName}","${dockerRegistryUserName}","${applicationName}","${lastSuccessfulBuildID}"
+    stage('Remove unwanted images'){
+        removeDockerImages
     }
     
-    //Download Docker Image
+    /*Download Docker Image
     stage('Download Docker Image'){
         downloadDockerImage "${dockerImageName}", "${BUILD_NUMBER}"
-    }
+    }*/
     
   
     
@@ -80,13 +81,16 @@ node(label: 'master'){
     //}
 	  try{
 		  stage('Remove previous image'){
-		  sh "docker-compose down"
+		       sh "ssh ${deployTo}"
+		       sh "docker-compose down"
 		}
 			}catch(err){
 				sh "echo $err"
 			}
     
-    stage('Run Docker Database Image'){
+    stage('Deploy to TEST Env'){
+	    sh "scp docker-compose.yaml  ${deployTo}"
+	    sh "ssh ${deployTo}"
             sh "docker-compose up -d"
 		//sh "kubectl apply -f /home/dvopsinfra/k81/guns-ui-deployment.yml"
     }
