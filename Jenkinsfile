@@ -85,7 +85,7 @@ node(label: 'master'){
 		       sh "docker-compose down"
 		}
 			}catch(err){
-				sh "echo $err"
+		  	echo "${err}"
 			}
     
     stage('Deploy to TEST Env'){
