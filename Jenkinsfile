@@ -87,7 +87,7 @@ node(label: 'master'){
 			}
     
     stage('Run Docker Database Image'){
-            sh "docker-compose -f docker-compose.yml up -d"
+            sh "docker-compose up -d"
 		//sh "kubectl apply -f /home/dvopsinfra/k81/guns-ui-deployment.yml"
     }
    /* }
