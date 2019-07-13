@@ -1,8 +1,8 @@
 def call(def registry, def dockerCredential ,def imageName,def releaseRepo, def snapshotRepo){
     echo "${dockerCredential}"
-    
+    sh 'pwd'
      //build docker image
-    image = docker.build("${imageName}:${BUILD_NUMBER}","./PipeSharedLib/Dockerfile")
+    image = docker.build("${imageName}:${BUILD_NUMBER}","Dockerfile")
     
     //login to docker hub
     docker.withRegistry('https://registry.hub.docker.com', "${dockerCredential}") {
