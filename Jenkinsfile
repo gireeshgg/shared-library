@@ -3,7 +3,7 @@ node(label: 'master'){
     //Variables
     def gitURL = "https://github.com/gireeshgg/guns.git"
     def repoBranch = "master"
-    def applicationName = "Tomguns"
+    def applicationName = "tomguns"
     def sonarqubeServer = "Sonar"
     def sonarqubeGoal = "clean verify sonar:sonar"
     def mvnHome = "Maven"
