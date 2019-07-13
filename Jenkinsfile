@@ -90,7 +90,7 @@ node(label: 'master'){
 		//sh "export LAST_SUC_BUID=${lastSuccessfulBuildID}"
 		
 		sh "sed -ie 's/:${lastSuccessfulBuildID}/:${BUILD_NUMBER}/g'   ../../workedyml/app.yaml"  //dont get confused
-		sh "ssh devopsinfra@localhost kubectl apply -f /var/lib/jenkins/workedyml/"
+		sh "ssh root@localhost kubectl apply -f /var/lib/jenkins/workedyml/"
 	}
 	  
 	    stage(' Success Mail'){
