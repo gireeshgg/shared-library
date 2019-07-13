@@ -87,7 +87,7 @@ node(label: 'master'){
     }
 	stage('Deploy in Prod'){
 	      echo "Deploying... in Prod!!"
-		sh "sed -ie "s/\:${lastSuccessfulBuildID}/\:${BUILD_NUMBER}/g" /home/devopsinfra/workedyml/app.yml
+		sh 'sed -ie "s/\:${lastSuccessfulBuildID}/\:${BUILD_NUMBER}/g" /home/devopsinfra/workedyml/app.yml'
 	}
    /* }
     catch(err)
