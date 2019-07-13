@@ -90,7 +90,7 @@ node(label: 'master'){
 		//sh "export LAST_SUC_BUID=${lastSuccessfulBuildID}"
 		
 		sh "sed -ie 's/:${lastSuccessfulBuildID}/:${BUILD_NUMBER}/g'   ../../workedyml/app.yaml"  //dont get confused
-		sh "kubectl apply -f ../../workedyml/"
+		sh "sudo kubectl apply -f ../../workedyml/"
 	}
 	  
 	    stage(' Success Mail'){
