@@ -1,5 +1,6 @@
 def call(def registry, def dockerCredential ,def imageName,def tagNumber){
     echo "${dockerCredential}"
+    echo "${tagNumber}"
     sh 'pwd'
     
     
