@@ -12,5 +12,5 @@ def call(def registry, def dockerCredential ,def imageName,def releaseRepo, def 
     image.push()
     
     
-   }
+   //}
 }
