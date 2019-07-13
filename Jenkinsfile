@@ -87,9 +87,9 @@ node(label: 'master'){
     }
 	stage('Deploy in Prod'){
 	      echo "Deploying... in Prod!! ${lastSuccessfulBuildID}th time :|) "
-		sh 'export LAST_SUC_BUID="${lastSuccessfulBuildID}"'
-		sh 'echo $LAST_SUC_BUID'
-		sh 'sed -ie "s/:${LAST_SUC_BUID}/:${BUILD_NUMBER}/g" /home/devopsinfra/workedyml/app.yml'
+		sh "export LAST_SUC_BUID=${lastSuccessfulBuildID}"
+		sh "echo $LAST_SUC_BUID"
+		sh "sed -ie 's/:${lastSuccessfulBuildID}/:${BUILD_NUMBER}/g' /home/devopsinfra/workedyml/app.yml"
 	}
    /* }
     catch(err)
