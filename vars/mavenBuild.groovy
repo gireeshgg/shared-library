@@ -4,7 +4,6 @@ def call (def artifactoryServer, def mvnHome,def pom, def goal , def BUILD_NUMBE
       tool: "${mvnHome}",
       pom: "${pom}",
       goals: "${goal}",
-      opts: '-Xms1024m -Xmx4096m',
-    deployerId: "${BUILD_NUMBER}"
+      opts: '-Xms1024m -Xmx4096m'
   )
 }
