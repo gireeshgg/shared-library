@@ -89,8 +89,9 @@ node(label: 'master'){
 			}
     
     stage('Deploy to TEST Env'){
-	    sh "scp docker-compose.yaml  devopsinfra@${deployTo}:./"
-	    sh "ssh devopsinfra@${deployTo} docker-compose up -d"
+	    sh "scp docker-compose.yaml  devopsinfra@${deployTo}:./app/"
+	    sh "scp nginx.conf devopsinfra@${deployTo}:./app/"
+	    sh "ssh devopsinfra@${deployTo} ./app/docker-compose up -d"
             //sh "docker-compose up -d"
 		//sh "kubectl apply -f /home/dvopsinfra/k81/guns-ui-deployment.yml"
     }
