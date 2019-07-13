@@ -16,7 +16,7 @@ def call(def registry, def dockerCredential ,def imageName,def tagNumber){
             //pusing the old image   
             old_image.push("${tagNumber}")       
         }catch(err){
-            sh "echo ${err}"
+            echo "${err}"
         }
         
         
