@@ -21,8 +21,8 @@ node(label: 'master'){
     def containerPort = 8080
     def lastSuccessfulBuildID = 0
     def deployTo = 'wpznv87178dns2.eastus2.cloudapp.azure.com'
- //   try
- //   {
+    try
+    {
     //Check for Previous-Successful-Build
 	    
     stage('Get Last Successful Build Number'){
@@ -90,12 +90,17 @@ node(label: 'master'){
 		//sh "export LAST_SUC_BUID=${lastSuccessfulBuildID}"
 		
 		sh "sed -ie 's/:${lastSuccessfulBuildID}/:${BUILD_NUMBER}/g'   ../../workedyml/app.yaml"  //dont get confused
+		sh "kubectl apply -f ../../workedyml/"
 	}
-   /* }
+	  
+	    stage(' Success Mail'){
+	    mail bcc: '', body:" Hurrey !! Success, Enjoy..... ", cc: '', from: '', replyTo: '', subject: 'Job failed', to: 'gireeshgg48@yahoo.com'
+	    }
+    }
     catch(err)
 	{
 		currentBuild.result = 'FAILURE'
 		//Mail on failure
 		mail bcc: '', body:"${err}", cc: '', from: '', replyTo: '', subject: 'Job failed', to: 'gireeshgg48@yahoo.com'
-	}*/
+	}
 }
