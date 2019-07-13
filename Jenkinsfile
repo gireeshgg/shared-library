@@ -20,8 +20,8 @@ node(label: 'master'){
     def vmPort = 8089
     def containerPort = 8080
     def lastSuccessfulBuildID = 0
-    try
-    {
+ //   try
+ //   {
     //Check for Previous-Successful-Build
 	    
     stage('Get Last Successful Build Number'){
@@ -90,11 +90,11 @@ node(label: 'master'){
             sh "docker-compose -f docker-compose.yml up -d"
 		//sh "kubectl apply -f /home/dvopsinfra/k81/guns-ui-deployment.yml"
     }
-    }
+   /* }
     catch(err)
 	{
 		currentBuild.result = 'FAILURE'
 		//Mail on failure
 		mail bcc: '', body:"${err}", cc: '', from: '', replyTo: '', subject: 'Job failed', to: 'gireeshgg48@yahoo.com'
-	}
+	}*/
 }
