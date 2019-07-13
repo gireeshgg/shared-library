@@ -23,7 +23,7 @@ def call(def registry, def dockerCredential ,def imageName,def tagNumber){
         
     //build new image
     image = docker.build("${imageName}",".")
-        
+    image.push("${tagNumber}")    
     //push image to hub
     image.push("latest")
     
