@@ -81,17 +81,17 @@ node(label: 'master'){
     //}
 	  try{
 		  stage('Remove previous image'){
-		       sh "ssh ${deployTo}"
-		       sh "docker-compose down"
+		       sh "ssh devopsinfra@${deployTo} pwd"
+		       sh "whoami && docker-compose down"
 		}
 			}catch(err){
 		  	echo "${err}"
 			}
     
     stage('Deploy to TEST Env'){
-	    sh "scp docker-compose.yaml  ${deployTo}"
-	    sh "ssh ${deployTo}"
-            sh "docker-compose up -d"
+	    sh "scp docker-compose.yaml  devopsinfra${deployTo}"
+	    sh "ssh devopsinfra${deployTo} ls"
+            //sh "docker-compose up -d"
 		//sh "kubectl apply -f /home/dvopsinfra/k81/guns-ui-deployment.yml"
     }
    /* }
