@@ -86,8 +86,8 @@ node(label: 'master'){
     input "Do you want to Deploy in PROD ENV ?"
     }
 	stage('Deploy in Prod'){
-	      echo "Deploying... in Prod!!"
-		sh 'sed -ie "s/:\"${lastSuccessfulBuildID}\"/:${BUILD_NUMBER}/g" /home/devopsinfra/workedyml/app.yml'
+	      echo "Deploying... in Prod!! ${lastSuccessfulBuildID}th time :|) "
+		sh 'sed -ie "s/:${lastSuccessfulBuildID}/:${BUILD_NUMBER}/g" /home/devopsinfra/workedyml/app.yml'
 	}
    /* }
     catch(err)
