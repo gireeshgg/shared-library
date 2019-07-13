@@ -20,7 +20,7 @@ node(label: 'master'){
     def vmPort = 8089
     def containerPort = 8080
     def lastSuccessfulBuildID = 0
-    def deployTo = 'wpznv87178dns1.eastus2.cloudapp.azure.com'
+    def deployTo = 'wpznv87178dns2.eastus2.cloudapp.azure.com'
  //   try
  //   {
     //Check for Previous-Successful-Build
