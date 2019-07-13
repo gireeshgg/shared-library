@@ -53,7 +53,7 @@ node(label: 'master'){
     
     //MVN Build
     stage('Maven Build'){
-        mavenBuild "${artifactoryServer}","${mvnHome}","${pom}", "${goal}"
+        mavenBuild "${artifactoryServer}","${mvnHome}","${pom}", "${goal}","${BUILD_NUMBER}" 
     }
     
     //docker-image-build and Push
