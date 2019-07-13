@@ -1,5 +1,5 @@
-def call(def dockerImageRemove ,def dockerImageName, def userName, def applicationName,def lastSuccessfulBuild){
+def call(){
   //sh "docker rm -f $(docker ps -a)"
-  //sh "docker rmi -f $(docker images -aq|sort -u))"
+  sh "docker rmi -f $(docker images -aq|sort -u))"
 }
 
