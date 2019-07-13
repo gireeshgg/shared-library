@@ -67,20 +67,8 @@ node(label: 'master'){
         removeDockerImage
     }
     
-    /*Download Docker Image
-    stage('Download Docker Image'){
-        downloadDockerImage "${dockerImageName}", "${BUILD_NUMBER}"
-    }*/
-    
-  
-    
-    //Delete Old running Container and run new built
-    //stage('Run Docker Image'){
-    //    echo "Last Successful Build = ${lastSuccessfulBuildID}"
-    //    runDockerImage "${vmPort}","${containerPort}", "${applicationName}","${dockerImageName}", "${BUILD_NUMBER}", "${lastSuccessfulBuildID}"
-    //}
 	  try{
-		  stage('Remove previous image'){
+		  stage('Remove previous setup '){
 		       sh "ssh devopsinfra@${deployTo} 'sudo docker-compose down' "
 		       sh "whoami "
 		}
@@ -92,8 +80,11 @@ node(label: 'master'){
 	    sh "scp docker-compose.yaml  devopsinfra@${deployTo}:./"
 	    sh "scp nginx.conf devopsinfra@${deployTo}:./"
 	    sh "ssh devopsinfra@${deployTo} 'sudo docker-compose up -d' "
-            //sh "docker-compose up -d"
-		//sh "kubectl apply -f /home/dvopsinfra/k81/guns-ui-deployment.yml"
+            
+    }
+    stage(' Deplay to Prod Environment'){
+    input "Ready to Deploy in PROD ENV ? (YES/NO)
+    
     }
    /* }
     catch(err)
