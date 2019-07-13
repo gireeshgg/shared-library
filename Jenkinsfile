@@ -82,10 +82,12 @@ node(label: 'master'){
 	    sh "ssh devopsinfra@${deployTo} 'sudo docker-compose up -d' "
             
     }
-    stage(' Deplay to Prod Environment'){
-    input "Ready to Deploy in PROD ENV ? (YES/NO)
-    
+    stage(' Continue to Prod Environment ? '){
+    input "Do you want to Deploy in PROD ENV ?"
     }
+	stage('Deploy in Prod'){
+	      echo "Deployed in Prod"
+	}
    /* }
     catch(err)
 	{
