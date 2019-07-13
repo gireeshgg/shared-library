@@ -15,7 +15,7 @@ node(label: 'master'){
     def dockerRegistry = "https://registry.hub.docker.com"
     def dockerImageRemove = "registry.hub.docker.com"
     def dockerRegistryUserName = "gireeshgg"
-	def dockerCredentialID = credentials('${docker_password}') 
+    def dockerCredentialID = '${docker_password}'
     def dockerImageName = "${dockerRegistryUserName}/${applicationName}"
     def vmPort = 8089
     def containerPort = 8080
