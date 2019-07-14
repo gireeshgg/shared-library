@@ -89,8 +89,8 @@ node(label: 'master'){
 	      echo "Deploying... in Prod!! ${lastSuccessfulBuildID}th time :|) "
 		//sh "export LAST_SUC_BUID=${lastSuccessfulBuildID}"
 		
-		sh "sed -ie 's/:${lastSuccessfulBuildID}/:${BUILD_NUMBER}/g'   ../../workedyml/app.yaml"  //dont get confused
-		sh "ssh root@localhost kubectl apply -f /var/lib/jenkins/workedyml/"
+		sh "sed -ie 's/:${lastSuccessfulBuildID}/:${BUILD_NUMBER}/g'   k8deploy/app.yaml"  //dont get confused
+		sh "ssh root@localhost kubectl apply -f /var/lib/jenkins/workspace/PipeSharedLib/k8deploy/"
 	}
 	  
 	    stage(' Success Mail'){
