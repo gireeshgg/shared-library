@@ -1,6 +1,7 @@
-def call(def registry, def dockerCredential ,def imageName,def tagNumber){
+def call(def registry, def dockerCredential ,def imageName,def tagNumber, def build_number){
     echo "${dockerCredential}"
     echo "${tagNumber}"
+    echo "${build_number}"
     sh 'pwd'
     
     
@@ -23,7 +24,7 @@ def call(def registry, def dockerCredential ,def imageName,def tagNumber){
         
     //build new image
     image = docker.build("${imageName}",".")
-    image.push("${tagNumber}")    
+    image.push("${build_number}")    
     //push image to hub
     image.push("latest")
     
