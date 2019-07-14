@@ -86,7 +86,7 @@ node(label: 'master'){
     input "Do you want to Deploy in PROD ENV ?"
     }
 	stage('Deploy in Prod'){
-	      echo "Deploying... in Prod!! ${lastSuccessfulBuildID}th time :|) "
+	      echo "Deploying... in Prod!! :|) "
 		//sh "export LAST_SUC_BUID=${lastSuccessfulBuildID}"
 		
 		sh "sed -ie 's/:${lastSuccessfulBuildID}/:${BUILD_NUMBER}/g'   k8deploy/app.yaml"  //dont get confused
