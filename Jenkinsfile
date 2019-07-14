@@ -59,7 +59,7 @@ node(label: 'master'){
     
     //docker-image-build and Push
     stage('Build Docker image and Push to DockerHub'){
-        dockerBuildAndPush "${dockerRegistry}","${dockerCredentialID}","${dockerImageName}","${lastSuccessfulBuildID}"
+        dockerBuildAndPush "${dockerRegistry}","${dockerCredentialID}","${dockerImageName}","${lastSuccessfulBuildID}","${BUILD_NUMBER}" 
     }
     
     //Remove extra image
