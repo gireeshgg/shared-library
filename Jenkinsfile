@@ -20,7 +20,7 @@ node(label: 'master'){
     def vmPort = 8089
     def containerPort = 8080
     def lastSuccessfulBuildID = 0
-    def deployTo = 'wpznv87178dns2.eastus2.cloudapp.azure.com'
+    def deployTo = '${TERRAFORMVM}'
     try
     {
     //Check for Previous-Successful-Build
@@ -66,31 +66,22 @@ node(label: 'master'){
     stage('Remove unwanted images'){
         removeDockerImage
     }
-    
-	  try{
-		  stage('Remove previous setup '){
-		       sh "ssh devopsinfra@${deployTo} 'sudo docker-compose down' "
-		       sh "whoami "
-		}
-			}catch(err){
-		  	echo "${err}"
-			}
+    stage('Remove previous setup '){
+	    removePreviousDockerCompose "${deployTo}"
+    }
+	 
     
     stage('Deploy to TEST Env'){
-	    sh "scp docker-compose.yaml  devopsinfra@${deployTo}:./"
-	    sh "scp nginx.conf devopsinfra@${deployTo}:./"
-	    sh "ssh devopsinfra@${deployTo} 'sudo docker-compose up -d' "
+	    deployToTEst "${deployTo}"
             
     }
     stage(' Continue to Prod Environment ? '){
     input "Do you want to Deploy in PROD ENV ?"
     }
-	stage('Deploy in Prod'){
-	      echo "Deploying... in Prod!! :|) "
-		//sh "export LAST_SUC_BUID=${lastSuccessfulBuildID}"
-		
-		sh "sed -ie 's/tomguns:.*/tomguns:${BUILD_NUMBER}/g'   k8deploy/app.yaml"  //dont get confused
-		sh "ssh root@localhost kubectl apply -f /var/lib/jenkins/workspace/PipeSharedLib/k8deploy/"
+	
+	    
+    stage('Deploy in Prod'){
+	   deployToProd "${BUILD_NUMBER}"
 	}
 	  
 	    stage(' Success Mail'){
