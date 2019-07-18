@@ -1,8 +1,8 @@
 def call(){
-        sh "pwd"
-        sh "cd terraform && sudo terraform apply -auto-approve"
-        sh "cd terraform && sudo export TERRAFORMVM=`cat public_ip.txt`"
-        sh "echo $terraform ->IP of the Test ENV"
-        sh "sudo sh replaceip.sh"
-        sh "sudo ansible-playbook ../PipeSharedLib/ansibleFiles/installpackages.yml -vv "
-}
+         sh "cd terraform && sudo terraform apply -auto-approve"
+       // sh "export TERRAFORMVM=`cat /var/lib/jenkins/workspace/PipeSharedLib/terraform/public_ip.txt`"
+        sh "sudo sh terraform/replaceip.sh"
+       // sh "cat /etc/ansible/hosts"
+        sh "sudo ansible -m ping terraformvm"
+        sh "sudo ansible-playbook ../PipeSharedLib/ansibleFiles/installpackages.yaml  -vv "
+        
