@@ -69,8 +69,11 @@ node(label: 'master'){
     stage('Remove previous setup '){
 	    removePreviousDockerCompose "${deployTo}"
     }
-	 
     
+    stage(' creating test environment '){
+	createTestEnv
+    }    
+	    
     stage('Deploy to TEST Env'){
 	    deployToTEst "${deployTo}"
             
@@ -78,7 +81,8 @@ node(label: 'master'){
     stage(' Continue to Prod Environment ? '){
     input "Do you want to Deploy in PROD ENV ?"
     }
-	
+    
+    
 	    
     stage('Deploy in Prod'){
 	   deployToProd "${BUILD_NUMBER}"
