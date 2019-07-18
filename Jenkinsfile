@@ -67,7 +67,9 @@ node(label: 'master'){
     }
     
     stage(' creating test environment and Deploying!! '){
-	createTestEnv
+	    echo "Creating TEST ENV using Terraform"
+	    createTestEnv
+	    echo "Deployed into TEST ENV"
     }    
 
     stage(' Continue to Prod Environment ? '){
