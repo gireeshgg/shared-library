@@ -20,7 +20,6 @@ node(label: 'master'){
     def vmPort = 8089
     def containerPort = 8080
     def lastSuccessfulBuildID = 0
-    def deployTo = '${TERRAFORMVM}'
     try
     {
     //Check for Previous-Successful-Build
@@ -63,21 +62,14 @@ node(label: 'master'){
     }
     
     //Remove extra image
-    stage('Remove unwanted images'){
+    stage('Remove unwanted images in build ENV'){
         removeDockerImage
     }
-    stage('Remove previous setup '){
-	    removePreviousDockerCompose "${deployTo}"
-    }
     
-    stage(' creating test environment '){
+    stage(' creating test environment and Deploying!! '){
 	createTestEnv
     }    
-	    
-    stage('Deploy to TEST Env'){
-	    deployToTest "${deployTo}"
-            
-    }
+
     stage(' Continue to Prod Environment ? '){
     input "Do you want to Deploy in PROD ENV ?"
     }
