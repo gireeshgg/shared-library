@@ -5,4 +5,4 @@ def call(){
        // sh "cat /etc/ansible/hosts"
         sh "sudo ansible -m ping terraformvm"
         sh "sudo ansible-playbook ../PipeSharedLib/ansibleFiles/installpackages.yaml  -vv "
-        
+} 
