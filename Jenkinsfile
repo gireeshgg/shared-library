@@ -75,7 +75,7 @@ node(label: 'master'){
     }    
 	    
     stage('Deploy to TEST Env'){
-	    deployToTEst "${deployTo}"
+	    deployToTest "${deployTo}"
             
     }
     stage(' Continue to Prod Environment ? '){
